@@ -1,3 +1,5 @@
+import re
+
 class Rectangle:
   def __init__(self, width, height):
     self.width = width
@@ -10,16 +12,13 @@ class Rectangle:
     self.height = height
 
   def get_area(self):
-    area = self.width * self.height
-    return area
+    return self.width * self.height
 
   def get_perimeter(self):
-    perimeter = (2 * self.width + 2 * self.height)
-    return perimeter
+    return 2 * self.width + 2 * self.height
 
   def get_diagonal(self):
-    diagonal = ((self.width ** 2 + self.height ** 2) ** .5)
-    return diagonal
+    return (self.width ** 2 + self.height ** 2) ** .5
 
   def get_picture(self):
     picture = ""
@@ -31,16 +30,17 @@ class Rectangle:
       j += 1
     return picture
 
-  # def get_amount_inside(self, shape):
-  #   nb = ""
-    
-  #   return nb
+  def get_amount_inside(self, shape):
+    nb = 0
+    while self.height > 0  and self.width > 0:
+      self.height -= shape.height
+      self.width -= shape.width
+      if self.height > 0  and self.width > 0:
+        nb += 1
+    return nb
 
   def __str__(self):
-    string = ""
-    string = "Rectangle(width=" + str(self.width) + ", height=" + str(self.height) + ")"
-    return string
-# get_amount_inside: Takes another shape (square or rectangle) as an argument. Returns the number of times the passed in shape could fit inside the shape (with no rotations). For instance, a rectangle with a width of 4 and a height of 8 could fit in two squares with sides of 4.
+    return "Rectangle(width=" + str(self.width) + ", height=" + str(self.height) + ")"
 
 class Square(Rectangle):
   def __init__(self, side):
@@ -49,22 +49,17 @@ class Square(Rectangle):
   def set_side(self, side):
     self.set_width(side)
     self.set_height(side)
-    # self.side = side
   
   def set_width(self,side):
     super().set_width(side)
     super().set_height(side)
-    # self.side = side
 
   def set_height(self, side):
     super().set_height(side)
     super().set_width(side)
-    # self.side = side
 
   def __str__(self):
-    string = ""
-    string = "Square(side=" + str(self.height) + ")"
-    return string
+    return "Square(side=" + str(self.height) + ")"
 
 rect = Rectangle(5, 10)
 print(rect.get_area())
