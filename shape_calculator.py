@@ -1,4 +1,4 @@
-import re
+import math
 
 class Rectangle:
   def __init__(self, width, height):
@@ -31,13 +31,7 @@ class Rectangle:
     return picture
 
   def get_amount_inside(self, shape):
-    nb = 0
-    while self.height >= 0  and self.width >= 0:
-      self.height -= shape.height
-      self.width -= shape.width
-      if self.height >= 0  and self.width >= 0:
-        nb += 1
-    return nb
+    return math.floor(self.get_area() / shape.get_area())
 
   def __str__(self):
     return "Rectangle(width=" + str(self.width) + ", height=" + str(self.height) + ")"
@@ -61,26 +55,26 @@ class Square(Rectangle):
   def __str__(self):
     return "Square(side=" + str(self.height) + ")"
 
-rect = Rectangle(5, 10)
-print(rect.get_area())
-rect.set_width(3)
-print(rect.get_perimeter())
-print(rect)
-rect.set_height(7)
-print(rect)
-print(rect.get_picture())
+# rect = Rectangle(5, 10)
+# print(rect.get_area())
+# rect.set_width(3)
+# print(rect.get_perimeter())
+# print(rect)
+# rect.set_height(7)
+# print(rect)
+# print(rect.get_picture())
 
-sq = Square(9)
-print(sq.get_area())
-sq.set_side(4)
-print(sq.get_diagonal())
-print(sq)
-print(sq.get_picture())
+# sq = Square(9)
+# print(sq.get_area())
+# sq.set_side(4)
+# print(sq.get_diagonal())
+# print(sq)
+# print(sq.get_picture())
 
-sq.set_width(2)
-print(sq)
-print(sq.get_picture())
+# sq.set_width(2)
+# print(sq)
+# print(sq.get_picture())
 
-sq.set_height(8)
-print(sq)
-print(sq.get_picture())
+# sq.set_height(8)
+# print(sq)
+# print(sq.get_picture())
